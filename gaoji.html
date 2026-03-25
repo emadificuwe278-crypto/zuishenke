@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ 炫彩个人网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            overflow-x: hidden;
+            color: #fff;
+        }
+        /* 粒子背景 */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(0,255,255,0.3);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px #00ffff); }
+            to { filter: drop-shadow(0 0 20px #ff00ff); }
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: #00ffff; }
+        /* 英雄区 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 5s linear infinite;
+            background-size: 400%;
+        }
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.5s backwards;
+        }
+        .cta {
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0,255,255,0.5);
+            animation: fadeInUp 1s ease 1s backwards;
+        }
+        .cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255,0,255,0.8);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* 霓虹卡片 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        .card {
+            background: rgba(20,20,40,0.7);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(0,255,255,0.3);
+            box-shadow: 0 0 30px rgba(0,255,255,0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, #00ffff, transparent 30%);
+            animation: rotate 6s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .card:hover::before { opacity: 0.3; }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px rgba(255,0,255,0.5);
+        }
+        .card h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* 视频容器 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0,255,255,0.4);
+            margin: 2rem 0;
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            filter: brightness(1.1) contrast(1.1);
+        }
+        /* 音频播放器 */
+        .audio-player {
+            background: rgba(30,30,60,0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,0,255,0.4);
+            box-shadow: 0 0 20px rgba(255,0,255,0.3);
+            margin: 2rem 0;
+        }
+        audio {
+            width: 100%;
+            filter: invert(1) hue-rotate(180deg);
+        }
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0,0,0,0.9);
+            border-top: 1px solid rgba(0,255,255,0.3);
+            color: rgba(255,255,255,0.6);
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { padding: 1rem 1.5rem; }
+            .nav-links a { margin-left: 1rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <nav>
+        <div class="logo">Zuishenke ✨</div>
+        <div class="nav-links">
+            <a href="#home">首页</a>
+            <a href="#media">音视频</a>
+            <a href="#projects">项目</a>
+            <a href="#contact">联系</a>
+        </div>
+    </nav>
+    <section class="hero" id="home">
+        <h1>欢迎来到赛博空间</h1>
+        <p>代码 · 光影 · 无限可能</p>
+        <button class="cta" onclick="document.querySelector('#media').scrollIntoView({behavior:'smooth'})">进入数字世界</button>
+    </section>
+    <div class="container">
+        <section class="card" id="media">
+            <h2>🎬 视觉盛宴</h2>
+            <div class="video-container">
+                <video controls autoplay muted loop>
+                    <source src="video/simati.mp4" type="video/mp4">
+                </video>
+            </div>
+            <h2>🎧 听觉沉浸</h2>
+            <div class="audio-player">
+                <audio controls loop>
+                    <source src="audio/burujianyim.mp3" controls>
+                
+            </div>
+        </section>
+        <section class="card" id="projects">
+            <h2>🚀 项目矩阵</h2>
+            <p>▸ 响应式霓虹个人站</p>
+            <p>▸ 粒子背景交互系统</p>
+            <p>▸ 赛博朋克风格播放器</p>
+        </section>
+        <section class="card" id="contact">
+            <h2>📡 连接次元</h2>
+            <p>GitHub: <span style="color:#00ffff">@emadificuwe278-crypto</span></p>
+            <p>邮箱: <span style="color:#ff00ff">your-email@example.com</span></p>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2025 Zuishenke | 由 GitHub Pages 与霓虹光效驱动 ✨</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: ["#00ffff", "#ff00ff", "#ffff00"] },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#00ffff", opacity: 0.2, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { grab: { distance: 140, line_linked: { opacity: 0.8 } }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
