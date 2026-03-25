@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        /* 导航栏 */
+        nav {
+            background-color: #24292e;
+            padding: 1rem 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1.5rem;
+            font-weight: 500;
+        }
+        nav a:hover {
+            color: #959da5;
+        }
+        /* 主容器 */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        /* 英雄区 */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #24292e;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #586069;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        /* 内容区 */
+        .content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .content h2 {
+            color: #24292e;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e1e4e8;
+            padding-bottom: 0.5rem;
+        }
+        .content p {
+            margin-bottom: 1rem;
+        }
+        /* 视频容器 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .video-container video,
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        /* 音频播放器 */
+        .audio-player {
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: #f6f8fa;
+            border-radius: 8px;
+            border: 1px solid #e1e4e8;
+        }
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #2ea44f;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            background-color: #2c974b;
+        }
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #586069;
+            margin-top: 2rem;
+        }
+        /* 响应式适配 */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            nav {
+                padding: 1rem;
+            }
+            nav a {
+                margin-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <a href="#home">首页</a>
+        <a href="#about">关于我</a>
+        <a href="#media">音视频</a>
+        <a href="#contact">联系</a>
+    </nav>
+
+    <!-- 主内容区 -->
+    <div class="container">
+        <!-- 英雄区 -->
+        <section class="hero" id="home">
+            <h1>你好，我是 最深刻👋</h1>
+            <p>这是我搭建的个人网站，包含视频与音频功能。</p>
+            <a href="#media" class="btn">查看音视频</a>
+        </section>
+
+        <!-- 关于我 -->
+        <section class="content" id="about">
+            <h2>关于我</h2>
+            <p>我是一名热爱编程的开发者，专注于前端开发与开源项目。喜欢探索新技术，乐于分享学习心得。</p>
+            <p> </p>
+        </section>
+
+        <!-- 音视频展示区 -->
+        <section class="content" id="media">
+            <h2>我的音视频</h2>
+            
+            <!-- 视频部分 -->
+            <h3>🎥 演示视频</h3>
+            <div class="video-container">
+                <!-- 方式1：直接嵌入本地视频文件 -->
+                <video src="video/simati.mp4" controls width="900" height="600"></video>
+                
+                <!-- 方式2：嵌入 YouTube/B站 视频（推荐，无需上传大文件） -->
+                <!-- <iframe src="https://www.youtube.com/embed/你的视频ID" frameborder="0" allowfullscreen></iframe> -->
+            </div>
+            <p>这是我的项目演示视频，展示了核心功能与使用流程。</p>
+
+            <!-- 音频部分 -->
+            <h3>🎵 背景音乐</h3>
+            <div class="audio-player">
+               <audio src="audio/burujianyim.mp3" controls></audio>
+                <p>点击播放按钮，聆听背景音乐 🎶</p>
+            </div>
+        </section>
+
+        <!-- 联系我 -->
+        <section class="content" id="contact">
+            <h2>联系我</h2>
+            <p>你可以通过以下方式找到我：</p>
+            <ul>
+                <li>GitHub：<a href="https://github.com/emadificuwe278" target="_blank">@emadificuwe278</a></li>
+                <li>邮箱：your-email@example.com</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 zuishenke| 由 GitHub Pages 强力驱动</p>
+    </footer>
+</body>
+</html>
